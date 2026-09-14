@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<meta name="description" content="Stockify - Sistem Inventaris Ruangan berbasis PWA">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<title>Stockify — Sistem Inventaris Ruangan</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="splash" class="splash">
+  <img src="icons/icon-192.png" alt="Icon Stockify">
+  <h1>Stockify</h1>
+  <p>Sistem Inventaris Ruangan</p>
+  <div class="loader"><span></span></div>
+  <small>Dibuat oleh Rendi Aldiano Eka Saputra</small>
+</div>
+
+<header class="topbar">
+  <div class="brand">
+    <img src="icons/icon-192.png" alt="Stockify">
+    <div><strong>Stockify</strong><small>Inventaris Ruangan</small></div>
+  </div>
+  <div class="top-actions">
+    <span class="creator-nav">@david&amp;rendi</span>
+    <button id="installBtn" class="install-btn hidden">⬇ Install</button>
+    <button id="darkBtn" aria-label="Ubah tema">🌙</button>
+  </div>
+</header>
+
+<main>
+<section id="dashboard" class="page">
+  <div class="hero">
+    <div><span class="eyebrow">DASHBOARD</span><h2>Sistem Inventaris Ruangan</h2><p>Kelola data barang dengan cepat dan tersimpan otomatis di perangkat.</p></div>
+    <img src="icons/icon-192.png" alt="Stockify icon" class="hero-icon">
+  </div>
+
+  <div class="stats">
+    <article><span>📦</span><b id="total">0</b><small>Total Barang</small></article>
+    <article><span>✅</span><b id="baik">0</b><small>Kondisi Baik</small></article>
+    <article><span>⚠️</span><b id="rusak">0</b><small>Barang Rusak</small></article>
+  </div>
+
+  <div class="quick-actions">
+    <button class="primary" onclick="openAdd()">＋ Tambah Inventaris</button>
+    <button onclick="showPage('list')">▤ Lihat Daftar</button>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title"><h3>Statistik Kondisi</h3><span id="statText">0 barang</span></div>
+    <div class="bar-chart">
+      <div class="bar-item"><span>Baik</span><div><i id="barBaik"></i></div><b id="pctBaik">0%</b></div>
+      <div class="bar-item"><span>Rusak Ringan</span><div><i id="barRR"></i></div><b id="pctRR">0%</b></div>
+      <div class="bar-item"><span>Rusak Berat</span><div><i id="barRB"></i></div><b id="pctRB">0%</b></div>
+    </div>
+  </div>
+</section>
+
+<section id="form" class="page hidden">
+  <div class="section-head"><button class="back" onclick="showPage('dashboard')">←</button><div><span class="eyebrow">DATA INVENTARIS</span><h2 id="formTitle">Tambah Inventaris</h2></div></div>
+  <form id="inventoryForm" class="panel form-panel">
+    <label>Nama Barang<input id="nama" required maxlength="100" placeholder="Contoh: PC Lenovo"></label>
+    <label>Kode Inventaris<input id="kode" required maxlength="50" placeholder="Contoh: INV-PC-001"></label>
+    <label>Nama Ruangan<input id="ruangan" required maxlength="80" placeholder="Contoh: Lab Komputer"></label>
+    <label>Jumlah Barang<input id="jumlah" required type="number" min="1" step="1" placeholder="Contoh: 10"></label>
+    <label>Kondisi Barang<select id="kondisi" required><option>Baik</option><option>Rusak Ringan</option><option>Rusak Berat</option></select></label>
+    <div class="form-actions"><button class="primary" type="submit">💾 Simpan Data</button><button type="button" onclick="showPage('dashboard')">Batal</button></div>
+  </form>
+</section>
+
+<section id="list" class="page hidden">
+  <div class="section-head"><button class="back" onclick="showPage('dashboard')">←</button><div><span class="eyebrow">INVENTARIS</span><h2>Daftar Inventaris</h2></div></div>
+  <div class="tools panel">
+    <input id="search" aria-label="Pencarian" placeholder="🔎 Cari nama atau kode inventaris...">
+    <div class="filters">
+      <select id="filterRoom" aria-label="Filter ruangan"><option value="Semua">Semua Ruangan</option></select>
+      <select id="filterCondition" aria-label="Filter kondisi"><option value="Semua">Semua Kondisi</option><option>Baik</option><option>Rusak Ringan</option><option>Rusak Berat</option></select>
+    </div>
+    <div class="data-actions">
+      <button onclick="exportData()">⬇ Export</button>
+      <label class="file-btn">⬆ Import<input id="importFile" type="file" accept=".json,application/json"></label>
+      <button onclick="backupData()">💾 Backup</button>
+      <button onclick="restoreData()">♻ Restore</button>
+    </div>
+  </div>
+  <div id="items"></div>
+</section>
+</main>
+
+<nav>
+<button onclick="showPage('dashboard')">⌂<small>Beranda</small></button>
+<button onclick="openAdd()">＋<small>Tambah</small></button>
+<button onclick="showPage('list')">▤<small>Inventaris</small></button>
+</nav>
+
+<script src="script.js"></script>
+</body>
+</html>

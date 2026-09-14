@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Stockify",
+    "slug": "stockify",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon-1024.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/icon-1024.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0f172a"
+    },
+    "android": {
+      "package": "com.renzz.stockify",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon-1024.png",
+        "backgroundColor": "#0f172a"
+      }
+    },
+    "web": {
+      "favicon": "./assets/icon-192.png"
+    }
+  }
+}
